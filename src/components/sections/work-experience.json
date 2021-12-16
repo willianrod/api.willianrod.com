@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_sections_work_experiences",
+  "info": {
+    "displayName": "WorkExperience",
+    "icon": "history",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "utils.work-experience-item",
+      "required": true
+    },
+    "present_label": {
+      "type": "string"
+    }
+  }
+}

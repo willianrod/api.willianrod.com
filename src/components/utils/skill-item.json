@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_utils_skill_items",
+  "info": {
+    "displayName": "SkillItem",
+    "icon": "server"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "icon": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "since": {
+      "type": "date",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_sections_skills",
+  "info": {
+    "displayName": "Skills",
+    "icon": "brain"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "utils.skill-item",
+      "required": true
+    }
+  }
+}

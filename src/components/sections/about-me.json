@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_sections_about_mes",
+  "info": {
+    "displayName": "AboutMe",
+    "icon": "link"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "avatar": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "social_media": {
+      "type": "component",
+      "repeatable": true,
+      "component": "utils.social-media-item",
+      "required": true
+    },
+    "social_media_title": {
+      "type": "string"
+    }
+  }
+}

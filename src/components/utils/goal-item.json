@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_utils_goal_items",
+  "info": {
+    "displayName": "GoalItem",
+    "icon": "dice"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

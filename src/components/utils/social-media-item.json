@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_utils_social_media_items",
+  "info": {
+    "displayName": "SocialMediaItem",
+    "icon": "ad"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "instagram",
+        "twitter",
+        "linkedin",
+        "github",
+        "gitlab",
+        "spotify",
+        "stackoverflow"
+      ],
+      "required": true
+    },
+    "icon": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

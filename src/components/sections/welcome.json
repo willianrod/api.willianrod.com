@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_sections_welcomes",
+  "info": {
+    "displayName": "Welcome",
+    "icon": "child"
+  },
+  "options": {},
+  "attributes": {
+    "primary_text": {
+      "type": "string",
+      "required": true
+    },
+    "main_text": {
+      "type": "string",
+      "required": true
+    },
+    "secondary_text": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

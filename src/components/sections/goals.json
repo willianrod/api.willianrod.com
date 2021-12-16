@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_sections_goals",
+  "info": {
+    "displayName": "Goals",
+    "icon": "crown"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "utils.goal-item",
+      "required": true
+    }
+  }
+}

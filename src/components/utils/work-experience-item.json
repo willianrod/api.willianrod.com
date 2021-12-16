@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_utils_work_experience_items",
+  "info": {
+    "displayName": "WorkExperienceItem",
+    "icon": "circle",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "company_name": {
+      "type": "string",
+      "required": true
+    },
+    "position": {
+      "type": "string",
+      "required": true
+    },
+    "start_date": {
+      "type": "date",
+      "required": true
+    },
+    "end_date": {
+      "type": "date"
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}
