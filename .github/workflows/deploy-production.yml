@@ -15,31 +15,31 @@ jobs:
       # output the image tag that was built and pushed so we can deploy this image tag in the deploy job
       image-tag: ${{ steps.set-image-tag.outputs.image-tag }}
     steps:
+      - id: set-image-tag
+        run: echo "::set-output name=image-tag::${{ fromJson(steps.strapi-meta.outputs.json).tags[0] }}"
+
       - name: Docker meta
         id: strapi-meta
         uses: docker/metadata-action@v3
         with:
           images: |
-            WillianRod/api-willianrod
-
-      - id: set-image-tag
-        run: echo "::set-output name=image-tag::${{ fromJson(steps.strapi-meta.outputs.json).tags[0] }}"
+            ghcr.io/WillianRod/api-willianrod
 
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        with:
+          image: tonistiigi/binfmt:latest
+          platforms: all
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.REPOSITORY_TOKEN }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push
         id: docker_build
