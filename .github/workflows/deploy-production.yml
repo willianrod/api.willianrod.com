@@ -1,7 +1,7 @@
 name: Deploy to Caprover
 on:
-  release: # https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#release
-    types: [published] # GITHUB_REF Tag of release
+  release:
+    types: [published]
 
 jobs:
   build:
@@ -11,7 +11,6 @@ jobs:
       contents: read
       packages: write
     outputs:
-      # output the image tag that was built and pushed so we can deploy this image tag in the deploy job
       image-tag: ${{ steps.set-image-tag.outputs.image-tag }}
     env:
       SHARP_IGNORE_GLOBAL_LIBVIPS: 1
@@ -24,15 +23,13 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: |
-            ghcr.io/WillianRod/api-willianrod
+            ghcr.io/WillianRod/api-willianrod-com
 
       - id: set-image-tag
         run: echo "::set-output name=image-tag::${{ fromJson(steps.strapi-meta.outputs.json).tags[0] }}"
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
-        with:
-          platforms: linux/arm64 # linux/amd64,
 
       - name: Set up Docker Buildx
         id: buildx
@@ -44,7 +41,7 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.PUSH_TOKEN }}
 
       - name: Build and push
         id: docker_build
@@ -52,7 +49,6 @@ jobs:
         with:
           context: .
           push: true
-          platforms: linux/arm64 # linux/amd64,
           tags: ${{ steps.strapi-meta.outputs.tags }}
           labels: ${{ steps.strapi-meta.outputs.labels }}
 
@@ -63,26 +59,13 @@ jobs:
     environment: Production
     concurrency: Production
 
-    env:
-      CAPROVER_URL: ${{ secrets.CAPROVER_URL }}
-      STRAPI_CAPROVER_APP_TOKEN: ${{ secrets.STRAPI_CAPROVER_APP_TOKEN }}
-
-    strategy:
-      matrix:
-        include:
-          - app: strapi
-            token-key: STRAPI_CAPROVER_APP_TOKEN
-            image: ${{ needs.build.outputs.image-tag }}
-
     steps:
-      # Install Caprover CLI, which we use to deploy images to Caprover
       - name: "Install caprover-cli"
         run: npm install -g caprover
 
-      # Deploy each app by iterating over matrix values
       - name: "Deploy strapi"
         env:
-          APP_NAME: strapi
+          APP_NAME: ${{ secrets.APP_NAME }}
           APP_URL: ${{ secrets.CAPROVER_URL }}
           CAPROVER_APP_TOKEN: ${{ secrets.STRAPI_CAPROVER_APP_TOKEN }}
           IMAGE_NAME: ${{ needs.build.outputs.image-tag }}

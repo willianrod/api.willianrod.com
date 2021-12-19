@@ -1,11 +1,11 @@
-FROM ghcr.io/willianrod/node-libvips:v1.0.2
+FROM node:16.13.1
 
 WORKDIR /srv/app
 
 COPY ./package.json ./
 COPY ./yarn.lock ./
 
-RUN yarn install --network-timeout 100000
+RUN yarn install
 
 COPY . .
 
