@@ -1,4 +1,4 @@
-FROM node:16.13.1
+FROM ghcr.io/willianrod/node-libvips:v1.0.2
 
 WORKDIR /srv/app
 
