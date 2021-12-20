@@ -2,7 +2,8 @@
   "collectionName": "components_sections_skills",
   "info": {
     "displayName": "Skills",
-    "icon": "brain"
+    "icon": "brain",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -10,11 +11,14 @@
       "type": "string",
       "required": true
     },
-    "items": {
+    "skills": {
       "type": "component",
       "repeatable": true,
       "component": "utils.skill-item",
       "required": true
+    },
+    "since_label": {
+      "type": "string"
     }
   }
 }

@@ -12,8 +12,6 @@ jobs:
       packages: write
     outputs:
       image-tag: ${{ steps.set-image-tag.outputs.image-tag }}
-    env:
-      SHARP_IGNORE_GLOBAL_LIBVIPS: 1
     steps:
       - name: Checkout
         uses: actions/checkout@v2
